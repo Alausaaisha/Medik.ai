@@ -1,0 +1,23 @@
+.main-content {
+    background-color: #f8f9fa;
+    padding: 20px;
+  }
+  
+  .history-table {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  
+  .table th, .table td {
+    vertical-align: middle;
+  }
+  
+  .text-success {
+    color: green;
+  }
+  
+  .text-danger {
+    color: red;
+  }
+  

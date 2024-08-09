@@ -1,0 +1,39 @@
+.app {
+  height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  padding: 20px;
+}
+
+.sidebar-header {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.sidebar-footer {
+  padding: 10px 0;
+}
+
+.nav-link.active {
+  background-color: #004085;
+  border-left: 4px solid #007bff;
+}
+
+.main-content {
+  background-color: #f8f9fa;
+}
+
+.upload-section .upload-card {
+  border: 2px dashed #6c757d;
+  border-radius: 10px;
+}
+
+.upload-section .upload-card .upload-icon {
+  color: #007bff;
+}
+
+.diagnosis-section {
+  border-radius: 10px;
+}
