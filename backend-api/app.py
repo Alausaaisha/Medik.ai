@@ -25,3 +25,11 @@ def predict():
 
     return jsonify(result)
 
+def preprocess(data):
+    return preprocessed_data
+
+def postprocess(prediction):
+    return
+
+if __name__ == '__main__':
+    app.run(debug=True)
