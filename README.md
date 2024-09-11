@@ -1,0 +1,1 @@
+This repository contains the code implemented for my dissertation research titled A Web-Integrated System for Detecting PCOS Using Ultrasound Imaging and Machine Learning. Please reference this repository if you use any part of my code. Thank you.
