@@ -2,3 +2,12 @@ Flask
 Flask-CORS
 tensorflow
 numpy
+scikit-learn
+joblib
+pillow
+pybase64
+opencv-python
+gunicorn
+pymongo[srv]
+bcrypt
+python-dotenv
