@@ -1,45 +1,70 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
-import './SignUp.css'; // Import the CSS file for styling
+import { Link, useNavigate } from 'react-router-dom';
+import './SignUp.css';
+import medical_illustration1 from '../src/images/medical_illustration1.png';
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
     mobileNumber: '',
-    password: '',
-    confirmPassword: ''
+    password: ''
   });
+
+  const [formErrors, setFormErrors] = useState({});
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+    setFormErrors(prev => ({ ...prev, [name]: '' })); // Clear error on change
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Simple form validation
+    if (!formData.fullName || !formData.email || !formData.mobileNumber || !formData.password) {
+      setFormErrors({
+        fullName: !formData.fullName ? 'Full Name is required' : '',
+        email: !formData.email ? 'Email is required' : '',
+        mobileNumber: !formData.mobileNumber ? 'Mobile Number is required' : '',
+        password: !formData.password ? 'Password is required' : ''
+      });
+      return; // Prevent submission if validation fails
+    }
+
+    // Email format validation
+    if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      setFormErrors(prev => ({ ...prev, email: 'Invalid email format' }));
+      return;
+    }
+
     try {
-        // check confirm password is valid
-        if (formData.password !== formData.confirmPassword) {
-          alert('password and confirm password do not match')
-          return;
-        }
-        const response = await axios.post('http://localhost:5500/signup', formData);
-        alert('Signup successful, please login.');
+      const response = await axios.post('http://localhost:5000/signup', formData);
+
+      if (response.status === 201) {
+        alert('Signup successful! Please login.');
         navigate('/login'); // Redirect to login after successful signup
-      } catch (error) {
-        console.error('Signup error:', error.response ? error.response.data : error);
-        alert('Error during signup.');
+      } else {
+        alert('Signup error.');
+      }
+    } catch (error) {
+        if (error.response) {
+          console.error('Signup error:', error.response.data);
+          alert(error.response.data.error || 'Error during signup.');
+        } else {
+          console.error('Signup error:', error);
+          alert('An unexpected error occured.');
+        }
     }
   };
 
   return (
     <div className="signup-container">
       <div className="signup-form-container">
-        <h2>Get Started by creating a Medik account</h2>
+        <h2>Get Started by Creating a Medik Account</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="fullName">Full Name</label>
@@ -51,8 +76,11 @@ const SignUp = () => {
               value={formData.fullName}
               onChange={handleChange}
               required
+              autocomplete="name"  // Added autocomplete attribute
             />
+            {formErrors.fullName && <span className="error-text">{formErrors.fullName}</span>}
           </div>
+
           <div className="form-group">
             <label htmlFor="email">Email Address</label>
             <input
@@ -63,8 +91,11 @@ const SignUp = () => {
               value={formData.email}
               onChange={handleChange}
               required
+              autocomplete="email"  // Added autocomplete attribute
             />
+            {formErrors.email && <span className="error-text">{formErrors.email}</span>}
           </div>
+
           <div className="form-group">
             <label htmlFor="mobileNumber">Mobile Number</label>
             <input
@@ -75,8 +106,11 @@ const SignUp = () => {
               value={formData.mobileNumber}
               onChange={handleChange}
               required
+              autocomplete="tel"  // Added autocomplete attribute
             />
+            {formErrors.mobileNumber && <span className="error-text">{formErrors.mobileNumber}</span>}
           </div>
+
           <div className="form-group">
             <label htmlFor="password">Create Password</label>
             <input
@@ -87,14 +121,17 @@ const SignUp = () => {
               value={formData.password}
               onChange={handleChange}
               required
+              autocomplete="new-password"  // Added autocomplete attribute for new passwords
             />
+            {formErrors.password && <span className="error-text">{formErrors.password}</span>}
           </div>
-          <button type="submit" className="signup-button">Create account</button>
+
+          <button type="submit" className="signup-button">Create Account</button>
         </form>
         <p>Already have an account? <Link to="/login">Log in</Link></p>
       </div>
       <div className="signup-image-container">
-        <img src="images/medical-illustration.png" alt="Medical Illustration" />
+        <img src={medical_illustration1} alt="Medical Illustration" />
       </div>
     </div>
   );

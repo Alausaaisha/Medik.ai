@@ -5,6 +5,7 @@ import Home from './Home';
 import History from './History';
 import Login from './Login';
 import SignUp from './SignUp';
+import Profile from './Profile';
 import './App.css';
 import { useAuth } from './AuthContext';
 
@@ -20,8 +21,8 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/history" element={isAuthenticated ? <History /> : <Navigate to='/login' />} />
-              {/* <Route path="/profile" element={isAuthenticated ? <Profile /> : <Navigate to="/login" />} /> */}
               <Route path="/signup" element={<SignUp />} />
+              <Route path="/profile" element={<Profile />} />
               <Route path="/login" element={<Login />} />
             </Routes>
           </div>

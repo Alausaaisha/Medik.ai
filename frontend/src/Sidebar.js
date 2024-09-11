@@ -1,6 +1,5 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-//import { Link } from 'react-router-dom';
 import { FaSignOutAlt } from 'react-icons/fa';
 import { BsPerson } from 'react-icons/bs';
 import { HiOutlineDocumentText } from 'react-icons/hi';
@@ -30,25 +29,35 @@ const Sidebar = () => {
       <nav className="flex-grow-1">
         <ul className="nav flex-column">
           <li className="nav-item">
-            <NavLink className="nav-link text-white" to="/" activeClassName="active">
+            <NavLink 
+              className={({ isActive }) => `nav-link text-white ${isActive ? 'active' : ''}`} 
+              to="/">
               <AiOutlineFileSearch size={20} className="mr-2" />
               Scans
             </NavLink>
           </li>
           <li className="nav-item">
-            <a className="nav-link text-white" href="#" onClick={() => handleProtectedRoute('/history')}>
+            <NavLink 
+              className={({ isActive }) => `nav-link text-white ${isActive ? 'active' : ''}`} 
+              to="/history" 
+              onClick={() => handleProtectedRoute('/history')}>
               <HiOutlineDocumentText size={20} className="mr-2" />
               History
-            </a>
+            </NavLink>
           </li>
           <li className="nav-item">
-            <a className="nav-link text-white" href="#" onClick={() => handleProtectedRoute('/profile')}>
+            <NavLink 
+              className={({ isActive }) => `nav-link text-white ${isActive ? 'active' : ''}`} 
+              to="/profile" 
+              onClick={() => handleProtectedRoute('/profile')}>
               <BsPerson size={20} className="mr-2" />
               Profile
-            </a>
+            </NavLink>
           </li>
           <li className="nav-item">
-            <NavLink className="nav-link text-white" to="/signup" activeClassName="active">
+            <NavLink 
+              className={({ isActive }) => `nav-link text-white ${isActive ? 'active' : ''}`} 
+              to="/signup">
               <MdPersonAdd size={20} className="mr-2" />
               Sign Up
             </NavLink>
@@ -57,12 +66,17 @@ const Sidebar = () => {
       </nav>
       <div className="sidebar-footer">
         {isAuthenticated ? (
-          <a className="nav-link text-white" href="#" onClick={logout}>
+          <NavLink 
+            className={({ isActive }) => `nav-link text-white ${isActive ? 'active' : ''}`} 
+            to="/login" 
+            onClick={logout}>
             <FaSignOutAlt size={20} className="mr-2" />
             Log out
-          </a>
+          </NavLink>
         ) : (
-          <NavLink className="nav-link text-white" to="/login" activeClassName="active">
+          <NavLink 
+            className={({ isActive }) => `nav-link text-white ${isActive ? 'active' : ''}`} 
+            to="/login">
             <FaSignOutAlt size={20} className="mr-2" />
             Log in
           </NavLink>

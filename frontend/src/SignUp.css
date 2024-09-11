@@ -1,75 +1,84 @@
 .signup-container {
-    display: flex;
-    height: 100vh;
-  }
-  
-  .signup-form-container {
-    flex: 1;
-    padding: 50px;
-    display: flex;
+  display: flex; /* Use flexbox layout */
+  max-width: 1000px; /* Adjust as needed */
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+
+.signup-form-container {
+  flex: 1; /* Take up available space */
+  padding: 20px;
+}
+
+.signup-form-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.signup-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.signup-button:hover {
+  background-color: #0056b3;
+}
+
+.error-text {
+  color: red;
+  margin-top: 10px;
+}
+
+.success-text {
+  color: green;
+  margin-top: 10px;
+}
+
+.signup-image-container {
+  flex: 1; /* Take up available space */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signup-image-container img {
+  max-width: 100%; /* Ensure image scales properly */
+  height: auto; /* Maintain aspect ratio */
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .signup-container {
     flex-direction: column;
-    justify-content: center;
   }
-  
+
+  .signup-form-container,
   .signup-image-container {
-    flex: 1;
-    background-color: #f0f4f8;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .signup-image-container img {
-    width: 80%;
-    height: auto;
-  }
-  
-  h2 {
-    margin-bottom: 20px;
-  }
-  
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  .form-group label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .form-group input {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
   }
-  
-  .signup-button {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  .signup-button:hover {
-    background-color: #0056b3;
-  }
-  
-  p {
-    margin-top: 20px;
-    text-align: center;
-  }
-  
-  p a {
-    color: #007bff;
-    text-decoration: none;
-  }
-  
-  p a:hover {
-    text-decoration: underline;
-  }
-  
+}
